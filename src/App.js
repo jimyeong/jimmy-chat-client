@@ -1,24 +1,74 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useContext, createContext, useEffect, useReducer } from 'react';
+import HomePage from './pages/HomePage';
+import styled from 'styled-components';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import ReigisterPage from './pages/RegisterPage';
+import LoginPage from './pages/LoginPage';
+import { ChakraProvider } from '@chakra-ui/react';
+import { extendTheme } from '@chakra-ui/react';
+import { reducer, initialState } from './reducer';
+import {
+  SystemAlertMessage,
+  MessageContainer,
+} from './components/MessagePanel';
+
+export const appContext = createContext(null);
+const theme = extendTheme({
+  fonts: {
+    heading: 'Heading Font Name',
+    body: 'Body Font Name',
+  },
+});
+
+const AppBlock = styled.div`
+  .ftc-l {
+    color: #666;
+  }
+  .ftc-d {
+    color: #333;
+  }
+  .ftw-l {
+    font-weight: 300;
+  }
+  .main__title {
+    text-transform: capitalize;
+    font-size: 21px;
+  }
+  .main__txt {
+    font-size: 18px;
+  }
+`;
 
 function App() {
+  const [state, dispatch] = useReducer(initialState, reducer);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <ChakraProvider>
+        <appContext.Provider value={{ state, dispatch }}>
+          <AppBlock className="App">
+            <MessageContainer>
+              <SystemAlertMessage
+                status="error"
+                message="Your Chakra experience may be degraded "
+              />
+              <SystemAlertMessage
+                status="success"
+                message="Your Chakra experience may be degraded "
+              />
+            </MessageContainer>
+            <Route exact path="/">
+              <HomePage />
+            </Route>
+            <Route path="/register">
+              <ReigisterPage />
+            </Route>
+            <Route path="/login">
+              <LoginPage />
+            </Route>
+          </AppBlock>
+        </appContext.Provider>
+      </ChakraProvider>
+    </Router>
   );
 }
 
