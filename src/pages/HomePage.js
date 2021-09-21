@@ -3,17 +3,15 @@ import styled from 'styled-components';
 import { Button, Stack } from '@chakra-ui/react';
 import { LockIcon, AddIcon } from '@chakra-ui/icons';
 import { Link } from 'react-router-dom';
-import ChatRoom from '../components/ChatRoom';
+import { ChatRoom, ChatRoomContainer } from '../components/ChatRoom';
+import { LayoutContainer } from '../components/LayoutContainer';
+import { Route, useHistory } from 'react-router-dom';
+import ChatWindow from '../components/ChatWindow';
 
-const HomePageBlock = styled.div`
-  width: 900px;
-  padding: 1rem;
-  box-shadow: 1px 1px 15px 15px rgb(0 0 0 / 20%);
-  margin: 2rem;
-  margin: 0 auto;
-`;
+const HomePageBlock = styled.div``;
 
 export default function HomePage() {
+  const history = useHistory();
   const [number, setNumber] = useState(0);
   useEffect(() => {
     console.log('컴포넌트 마운트');
@@ -24,22 +22,28 @@ export default function HomePage() {
       console.log('컴포넌트 언마운트');
     };
   }, []);
-  console.log('[inner function]: ', number);
+
+  const onClickChatRoom = (idx) => {
+    history.push(`/room/${idx}`);
+  };
+
   return (
     <HomePageBlock>
-      <div className="home__header">
-        <Greetings />
-      </div>
-      <div className="home__body">
-        <LoginPanel />
-        <ChatRoomContainer>
-          <ChatRoom />
-          <ChatRoom />
-          <ChatRoom />
-          <ChatRoom />
-        </ChatRoomContainer>
-      </div>
-      <div className="home__footer"></div>
+      <LayoutContainer>
+        <div className="home__header">
+          <Greetings />
+        </div>
+        <div className="home__body">
+          <LoginPanel />
+          <ChatRoomContainer className="mt-2">
+            <ChatRoom onClick={onClickChatRoom} />
+            <ChatRoom onClick={onClickChatRoom} />
+            <ChatRoom onClick={onClickChatRoom} />
+            <ChatRoom onClick={onClickChatRoom} />
+          </ChatRoomContainer>
+        </div>
+        <div className="home__footer"></div>
+      </LayoutContainer>
     </HomePageBlock>
   );
 }
@@ -53,10 +57,6 @@ const Greetings = () => {
       </p>
     </React.Fragment>
   );
-};
-
-const ChatRoomContainer = ({ children }) => {
-  return <ul>{children}</ul>;
 };
 
 const LoginPanel = () => {

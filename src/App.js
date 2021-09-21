@@ -7,6 +7,7 @@ import LoginPage from './pages/LoginPage';
 import { ChakraProvider } from '@chakra-ui/react';
 import { extendTheme } from '@chakra-ui/react';
 import { reducer, initialState } from './reducer';
+import ChatWindow from './components/ChatWindow';
 import {
   SystemAlertMessage,
   MessageContainer,
@@ -57,12 +58,16 @@ function App() {
             <Route exact path="/">
               <HomePage />
             </Route>
-            <Route path="/register">
+            <Route exact path="/register">
               <ReigisterPage />
             </Route>
-            <Route path="/login">
+            <Route exact path="/login">
               <LoginPage />
             </Route>
+            <Route
+              path="/room/:id"
+              render={(props) => <ChatWindow {...props} />}
+            />
           </AppBlock>
         </appContext.Provider>
       </ChakraProvider>
