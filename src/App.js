@@ -11,7 +11,6 @@ import {
   SystemAlertMessage,
   MessageContainer,
 } from './components/MessagePanel';
-
 export const appContext = createContext(null);
 const theme = extendTheme({
   fonts: {
@@ -19,7 +18,6 @@ const theme = extendTheme({
     body: 'Body Font Name',
   },
 });
-
 const AppBlock = styled.div`
   .ftc-l {
     color: #666;
