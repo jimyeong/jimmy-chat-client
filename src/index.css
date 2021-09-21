@@ -172,13 +172,19 @@ code {
 }
 .row{
   display: flex;
-  align-items: center;
 }
 .jc-sb{
   justify-content: space-between;
 }
 .jc-c{
   justify-content: center;
+}
+.ai-c{
+  align-items: center;
+}
+.ai-s{
+  align-items: flex-start;
+
 }
 
 
