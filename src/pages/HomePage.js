@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import { Button, Stack } from '@chakra-ui/react';
 import { LockIcon, AddIcon } from '@chakra-ui/icons';
 import { Link } from 'react-router-dom';
-import { ChatRoom, ChatRoomContainer } from '../components/ChatRoom';
+import { ChatRoom, ChatRoomContainer } from '../components/Chat/ChatRoom';
 import { LayoutContainer } from '../components/LayoutContainer';
 import { Route, useHistory } from 'react-router-dom';
-import ChatWindow from '../components/ChatWindow';
+import ChatWindow from '../components/Chat/ChatWindow';
 
 const HomePageBlock = styled.div``;
 

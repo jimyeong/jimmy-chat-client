@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { pixelToRem, setColor } from '../../helper';
+import { pixelToRem, setColor } from '../../../helper';
 const ChatRoomBlock = styled.li`
   cursor: pointer;
   padding: 2rem;

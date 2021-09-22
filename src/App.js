@@ -7,7 +7,7 @@ import LoginPage from './pages/LoginPage';
 import { ChakraProvider } from '@chakra-ui/react';
 import { extendTheme } from '@chakra-ui/react';
 import { reducer, initialState } from './reducer';
-import ChatWindow from './components/ChatWindow';
+import ChatWindow from './components/Chat/ChatWindow';
 import {
   SystemAlertMessage,
   MessageContainer,

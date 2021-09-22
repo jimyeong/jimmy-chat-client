@@ -238,3 +238,6 @@ code {
 .tit-ft3{
   font-size: 18px
 }
+.btn{
+  cursor: pointer;
+}
