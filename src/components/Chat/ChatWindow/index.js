@@ -8,6 +8,8 @@ import { FaLeaveIcon } from '../../Icons';
 import { AppColorTheme } from '../../../config/colors';
 import { uiConfig } from '../../../config';
 import { ButtonContainer } from '../../Buttons';
+import { useHistory } from 'react-router-dom';
+
 const ChatWindowBlock = styled.div`
   .textarea {
     resize: none;
@@ -15,7 +17,7 @@ const ChatWindowBlock = styled.div`
   }
   .controll__panel {
     position: relative;
-    height: 700px;
+    height: ${uiConfig.Chat.ChatWindowHeight};
   }
   .btns__container {
     position: absolute;
@@ -31,6 +33,10 @@ const ChatWindowBlock = styled.div`
 `;
 
 function ChatWindow({ match }) {
+  const onClickLeave = () => {
+    history.push('/');
+  };
+  const history = useHistory();
   const {
     params: { id },
   } = match;
@@ -59,7 +65,7 @@ function ChatWindow({ match }) {
               <ChatUserWithLoginState />
             </div>
             <div className="btns__container">
-              <ButtonContainer>
+              <ButtonContainer onClick={onClickLeave}>
                 <FaLeaveIcon size={30} fill={AppColorTheme.red} />
               </ButtonContainer>
             </div>
@@ -73,7 +79,7 @@ function ChatWindow({ match }) {
 export default ChatWindow;
 
 const ChatDisplayBlock = styled.div`
-  height: 700px;
+  height: ${uiConfig.Chat.ChatWindowHeight};
   overflow-y: scroll;
   background: #b1c5e3;
 `;
